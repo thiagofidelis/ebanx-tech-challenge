@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EbanxChallenge.UnitTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EbanxChallenge.Domain", "EbanxChallenge.Domain\EbanxChallenge.Domain.csproj", "{779498C8-34EE-4FBD-ADC1-6761F7D3AABC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EbanxChallenge.Infra", "EbanxChallenge.Infra\EbanxChallenge.Infra.csproj", "{9229EA23-6892-4DCE-80F1-D30E9D69BEFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{779498C8-34EE-4FBD-ADC1-6761F7D3AABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{779498C8-34EE-4FBD-ADC1-6761F7D3AABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{779498C8-34EE-4FBD-ADC1-6761F7D3AABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9229EA23-6892-4DCE-80F1-D30E9D69BEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9229EA23-6892-4DCE-80F1-D30E9D69BEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9229EA23-6892-4DCE-80F1-D30E9D69BEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9229EA23-6892-4DCE-80F1-D30E9D69BEFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
