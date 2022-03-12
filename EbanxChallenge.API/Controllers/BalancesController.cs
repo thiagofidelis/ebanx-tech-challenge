@@ -1,3 +1,4 @@
+using EbanxChallenge.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EbanxChallenge.API.Controllers;
@@ -6,15 +7,21 @@ namespace EbanxChallenge.API.Controllers;
 [Route("[controller]")]
 public class BalancesController : ControllerBase
 {
+    private readonly IAccountService _accountService;
 
-    public BalancesController()
+    public BalancesController(IAccountService accountService)
     {
-        
+        _accountService = accountService;
     }
 
     [HttpGet(Name = "GetBalance")]
-    public Task<IActionResult> Get()
+    public async Task<IActionResult> Get([FromQuery]int accoundId)
     {
-        throw new NotImplementedException();
+        var account = await _accountService.Get(accoundId);
+        
+        if (account == null)
+            return NotFound(0);
+            
+        return Ok(account.GetBalance());
     }
 }

@@ -1,11 +1,15 @@
 namespace EbanxChallenge.Domain.Models
 {
     public class Account
-    { 
+    {
+        private int Id { get; set; }
         private readonly object balanceLock = new object();
         private decimal balance;
 
-        public Account(decimal initialBalance) => balance = initialBalance;
+        public Account(int id, decimal initialBalance) {
+            Id = id;
+            balance = initialBalance;
+        }
 
         public decimal Debit(decimal amount)
         {

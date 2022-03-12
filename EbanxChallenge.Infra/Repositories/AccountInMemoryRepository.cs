@@ -7,6 +7,7 @@ namespace EbanxChallenge.Infra.Repositories
     public class AccountInMemoryRepository : IAccountRepository
     {
         private IList<Account> accounts;
+        private readonly object accountsLock = new object();
         public AccountInMemoryRepository()
         {
             accounts = new List<Account>();
