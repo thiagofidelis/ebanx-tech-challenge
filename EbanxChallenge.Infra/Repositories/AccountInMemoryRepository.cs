@@ -6,46 +6,58 @@ namespace EbanxChallenge.Infra.Repositories
 {
     public class AccountInMemoryRepository : IAccountRepository
     {
-        private IList<Account> accounts;
+        private List<Account> _accounts;
         private readonly object accountsLock = new object();
         public AccountInMemoryRepository()
         {
-            accounts = new List<Account>();
+            _accounts = new List<Account>();
         }
 
-        public Task Add(Account entity)
+        public async Task Add(Account account)
         {
-            throw new NotImplementedException();
+            lock (accountsLock)
+            {
+                _accounts.Add(account);
+            }
         }
 
-        public Task AddRange(IEnumerable<Account> entities)
+        public async Task<Account?> Find(Predicate<Account> predicate)
         {
-            throw new NotImplementedException();
+            lock (accountsLock)
+            {
+                return _accounts.Find(predicate);
+            }
         }
 
-        public Task<IEnumerable<Account>> Find(Expression<Func<Account, bool>> predicate)
+        public async Task<Account?> Get(int id)
         {
-            throw new NotImplementedException();
+            lock (accountsLock)
+            {
+                return _accounts.Find(a => a.Id == id);
+            }
         }
 
-        public Task<Account> Get(int id)
+        public async Task<IEnumerable<Account>> GetAll()
         {
-            throw new NotImplementedException();
+            lock (accountsLock)
+            {
+                return _accounts;
+            }
         }
 
-        public Task<IEnumerable<Account>> GetAll()
+        public async Task Remove(Account account)
         {
-            throw new NotImplementedException();
+            lock (accountsLock)
+            {
+                _accounts.Remove(account);
+            }
         }
 
-        public Task Remove(Account entity)
+        public async Task RemoveAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveRange(IEnumerable<Account> entities)
-        {
-            throw new NotImplementedException();
+            lock (accountsLock) { 
+                _accounts.Clear();
+            }
         }
     }
 }

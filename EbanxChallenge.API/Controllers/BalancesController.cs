@@ -17,11 +17,11 @@ public class BalancesController : ControllerBase
     [HttpGet(Name = "GetBalance")]
     public async Task<IActionResult> Get([FromQuery]int accoundId)
     {
-        var account = await _accountService.Get(accoundId);
+        decimal? balance = await _accountService.GetBalance(accoundId);
         
-        if (account == null)
+        if (balance == null)
             return NotFound(0);
             
-        return Ok(account.GetBalance());
+        return Ok(balance);
     }
 }

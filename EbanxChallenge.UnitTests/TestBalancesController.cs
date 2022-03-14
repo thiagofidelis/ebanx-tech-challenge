@@ -17,8 +17,8 @@ public class TestBalancesController
         // arrange
         var accountServiceMock = new Mock<IAccountService>();
 
-        accountServiceMock.Setup(service => service.Get(10))
-            .ReturnsAsync(new Account(10, 100));
+        accountServiceMock.Setup(service => service.GetBalance(10))
+            .ReturnsAsync(100);
 
         var sut = new BalancesController(accountServiceMock.Object);
 
@@ -39,8 +39,8 @@ public class TestBalancesController
         // arrange
         var accountServiceMock = new Mock<IAccountService>();
 
-        accountServiceMock.Setup(service => service.Get(10))
-            .ReturnsAsync(null as Account);
+        accountServiceMock.Setup(service => service.GetBalance(10))
+            .ReturnsAsync(null as decimal?);
 
         var sut = new BalancesController(accountServiceMock.Object);
 

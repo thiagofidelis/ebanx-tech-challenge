@@ -11,9 +11,23 @@ namespace EbanxChallenge.Domain.Services
             _accountRepository = accountRepository;
         }
 
-        public Task<Account> Get(int accountId)
+        public async Task<Account> Get(int accountId)
         {
-            return _accountRepository.Get(accountId);
+            return await _accountRepository.Get(accountId);
+        }
+
+        public async Task Reset()
+        {
+            await _accountRepository.RemoveAll();
+        }
+
+        public async Task<decimal?> GetBalance(int accountId)
+        {
+            Account account = await _accountRepository.Get(accountId);
+            if (account == null)
+                return null;
+
+            return account.GetBalance();
         }
     }
 }

@@ -2,7 +2,7 @@ namespace EbanxChallenge.Domain.Models
 {
     public class Account
     {
-        private int Id { get; set; }
+        public int Id { get; init; }
         private readonly object balanceLock = new object();
         private decimal balance;
 
