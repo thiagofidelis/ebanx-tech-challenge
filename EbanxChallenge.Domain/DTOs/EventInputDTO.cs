@@ -5,16 +5,16 @@ namespace EbanxChallenge.Domain.DTOs
 {
     public class EventInputDTO : IValidatableObject
     {
-        public EventType Type { get; set; }
-        public int? Origin { get; set; }
-        public int? Destination { get; set; }
+        public string Type { get; init; }
+        public string? Origin { get; set; }
+        public string? Destination { get; set; }
         public decimal? Amount { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             switch (Type) 
             {
-                case EventType.Deposit:
+                case nameof(EventType.deposit):
                     if (Destination == null) 
                     { 
                         yield return new ValidationResult(
@@ -28,7 +28,7 @@ namespace EbanxChallenge.Domain.DTOs
                         new[] { nameof(Amount) });
                     }
                     break;
-                case EventType.Transfer:
+                case nameof(EventType.transfer):
                     if (Origin == null) 
                     { 
                         yield return new ValidationResult(
@@ -48,7 +48,7 @@ namespace EbanxChallenge.Domain.DTOs
                         new[] { nameof(Amount) });
                     }
                     break;
-                case EventType.Withdraw:
+                case nameof(EventType.withdraw):
                     if (Origin == null) 
                     { 
                         yield return new ValidationResult(

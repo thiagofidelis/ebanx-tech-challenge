@@ -1,24 +1,27 @@
 using EbanxChallenge.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Net;
 namespace EbanxChallenge.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ResetsController : ControllerBase
+public class ResetController : ControllerBase
 {
     private readonly IAccountService _accountService;
 
-    public ResetsController(IAccountService accountService)
+    public ResetController(IAccountService accountService)
     {
         _accountService = accountService;
     }
 
-    [HttpGet(Name = "Reset")]
-    public async Task<IActionResult> Reset([FromQuery]int accoundId)
+    [HttpPost(Name = "Reset")]
+    [Produces("text/plain")]
+    public async Task<string> Reset()
     {
         await _accountService.Reset();
             
-        return Ok("OK");
+        return "OK";
     }
+
+    
 }

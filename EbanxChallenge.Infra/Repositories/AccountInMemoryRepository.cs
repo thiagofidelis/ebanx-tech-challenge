@@ -29,7 +29,7 @@ namespace EbanxChallenge.Infra.Repositories
             }
         }
 
-        public async Task<Account?> Get(int id)
+        public async Task<Account?> Get(string id)
         {
             lock (accountsLock)
             {

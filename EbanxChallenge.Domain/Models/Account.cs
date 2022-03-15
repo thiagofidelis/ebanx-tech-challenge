@@ -2,13 +2,21 @@ namespace EbanxChallenge.Domain.Models
 {
     public class Account
     {
-        public int Id { get; init; }
+        public string Id { get; init; }
+        public decimal Balance { 
+            get { 
+                lock (balanceLock)
+                {
+                    return _balance;
+                } 
+            }
+        }
         private readonly object balanceLock = new object();
-        private decimal balance;
+        private decimal _balance;
 
-        public Account(int id, decimal initialBalance) {
+        public Account(string id, decimal initialBalance) {
             Id = id;
-            balance = initialBalance;
+            _balance = initialBalance;
         }
 
         public decimal Debit(decimal amount)
@@ -21,9 +29,9 @@ namespace EbanxChallenge.Domain.Models
             decimal appliedAmount = 0;
             lock (balanceLock)
             {
-                if (balance >= amount)
+                if (_balance >= amount)
                 {
-                    balance -= amount;
+                    _balance -= amount;
                     appliedAmount = amount;
                 }
             }
@@ -39,17 +47,8 @@ namespace EbanxChallenge.Domain.Models
 
             lock (balanceLock)
             {
-                balance += amount;
+                _balance += amount;
             }
         }
-
-        public decimal GetBalance()
-        {
-            lock (balanceLock)
-            {
-                return balance;
-            }
-        }
-        
     }
 }
